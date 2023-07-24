@@ -1,0 +1,49 @@
+@import '../../assets/styles/varialiables.scss';
+
+.form {
+  @include form-account;
+  position: relative;
+  width: 938px;
+  margin-top: 20px;
+}
+
+.title {
+  @include form-account-title;
+}
+
+.submit {
+  margin-top: 10px;
+  width: 27%;
+  height: 40px;
+  position: absolute;
+  left: 10.7%;
+  bottom: 15px;
+}
+
+.tags {
+  border: none;
+  align-self: flex-start;
+  margin: 0;
+  margin-top: 10px;
+  margin-left: 8%;
+  padding: 0;
+}
+
+.tagsTitle {
+  font-weight: 400;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.tagWrapp {
+  display: flex;
+  gap: 10px;
+  width: 400px;
+  margin-top: 5px;
+  margin-left: -6%;
+}
+
+.tagButton {
+  margin-top: 5px;
+  width: 120px;
+}

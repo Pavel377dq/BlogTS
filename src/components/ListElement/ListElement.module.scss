@@ -1,0 +1,87 @@
+@import '../../assets/styles/varialiables.scss';
+
+.element {
+   width: 938px;
+   height: 140px;
+   background-color: white;
+}
+
+.link{
+ line-height: 28px;
+ font-size: 20px;
+ color: $primary-color;
+ font-weight: 400;
+ text-decoration: none;
+}
+.like{
+   margin-top: 6px;
+   margin-left: 16px;
+}
+
+.count{
+   margin-top: 6px;
+   margin-left: 10px;
+}
+.profile{
+  
+   margin-top: 15px;
+   margin-right: 15px;
+   min-width: 10px;
+   max-width: 290px;
+   height: 46px;
+display: grid;
+grid-template-areas: 'nameArea pic'
+                        'date pic';
+}
+
+.name{
+   grid-area: nameArea;
+   line-height: 28px;
+   font-size: 18px;
+
+}
+
+.date{
+   grid-area:date;
+   line-height: 22px;
+   font-size: 12px;
+ 
+}
+
+.picture{
+   grid-area:pic;
+   width: 46px;
+   height: 46px;
+   border-radius: 50%;
+   margin-left: 5px;
+ 
+}
+.title{
+ 
+   height: 28px;
+   margin-top: 16px;
+   margin-left: 16px;
+   max-width: 500px;
+   display: flex;
+   align-items: center;
+}
+
+.wrap{
+   display: flex;
+   justify-content: space-between;
+}
+
+.text{
+   width: 682px;
+   font-size: 12px;
+   line-height: 22px;
+   margin: 0;
+   margin-left: 16px;
+   
+}
+
+.tags{
+
+  margin-left: 16px;
+  margin-bottom: 2px;
+}

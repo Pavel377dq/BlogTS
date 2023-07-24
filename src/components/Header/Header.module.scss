@@ -1,0 +1,145 @@
+@import '../../assets/styles/varialiables.scss';
+
+.header{
+   background-color: white;
+   height: 80px;
+}
+
+.wrap{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.title{ 
+   margin-left:22px;
+   font-size: 18px;
+   line-height: 28px;
+   font-weight: 600;
+   
+}
+
+.in{
+ 
+  border-radius: 5px;
+   width: 109px;
+   height: 51px;
+   background-color: white;
+   border: none; outline: none;
+   margin-right: 22px;
+   margin-top: 16px;
+   &:hover{
+    background-color: $primary-color;
+    color:white;
+   }
+  
+}
+
+.up{ width: 109px;
+   height: 51px;
+   background-color: white;
+   border: none;
+
+   outline: none;
+   border: 1px solid $success-color;
+   border-radius: 5px;
+   color: $success-color;
+   margin-right: 22px;
+   margin-top: 16px;
+   &:hover{
+    background-color: $success-color;
+    color:white;
+   }
+}
+
+
+.logo {
+ 
+   margin: 0;
+   font-size: 18px;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 28px;
+ 
+   &-link {
+     color: $heading-color;
+     text-decoration: none;
+   }
+ }
+ 
+ .buttons {
+   display: flex;
+   align-items: center;
+   gap: 25px;
+ }
+ 
+ .button {
+   font-family: inherit;
+ }
+ 
+ 
+ .buttonCreateArticle {
+   border-color: $success-color;
+   color: $success-color;
+   width: 112px;
+   height: 32px;
+   font-size: 14px;
+   line-height: 22px;
+   border-radius: 5px;
+   background-color: white;
+   margin-right: 20px;
+ 
+   &:hover {
+     background-color: $success-color;
+     border-color: $success-color !important;
+     color: white !important;
+   }
+ }
+
+
+ 
+ .buttonLogout {
+   border-color: rgba(85, 84, 84, 0.56);
+   color: rgba(85, 84, 84, 0.56);
+   width: 109px;
+   height: 51px;
+   font-size: 18px;
+   line-height: 28px;
+   background-color: white;
+   border-radius: 5px;
+   margin-right: 20px;
+ 
+   &:hover {
+     border-color: $heading-color !important;
+     color: $heading-color !important;
+   }
+ }
+ 
+ .userInfo {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-right: 20px;
+ }
+ 
+ .userName {
+   color: $heading-color;
+   text-decoration: none;
+ 
+ }
+ 
+ .userAvatar {
+   flex-shrink: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 46px;
+   height: 46px;
+   border-radius: 50%;
+ }
+
+ .logged-info{
+  display: flex;
+  align-items: center;
+ }

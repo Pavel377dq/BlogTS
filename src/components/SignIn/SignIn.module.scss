@@ -1,0 +1,63 @@
+@import '../../assets/styles/varialiables.scss';
+
+.button{
+   border: none; outline: none; 
+   background-color: $primary-color;
+   color: white;
+   height: 40px;
+   width: 319px;
+   border-radius: 4px;
+  }
+
+  .button-wrap{
+   width: 319px;
+   margin: 10px auto;
+  }
+
+  
+  .link{
+   text-decoration: none;
+   color: $primary-color;
+  }
+
+
+  .small-text{
+   width: 319px;
+   text-align: center;
+   line-height: 20px;
+   font-size: 12px;
+  }
+
+  .wrap{
+   background-color: white;
+   height: 374px;
+   width: 384px;
+   margin: 40px auto;
+   border: 1px solid $border-color-base;
+   box-shadow: 0 1.5px 3px black;
+   border-radius: 6px;
+   font-family: Roboto;
+  }
+
+.title{
+   font-family: sans-serif;
+   font-size: 20px;
+   line-height: 28px;
+   margin: 30px auto;
+   margin-bottom: 20px;
+   width:fit-content;
+}
+
+.signIn{
+   position: relative;
+}
+
+.serverError{
+   width: 384px;
+   height: 25px;
+   margin: 0 auto;
+   position: absolute;
+   top: -30px;
+   left: 50%;
+   margin-left: -192px;
+}

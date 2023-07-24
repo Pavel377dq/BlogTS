@@ -1,0 +1,53 @@
+@import '../../assets/styles/varialiables.scss';
+
+.wrapp {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+ }
+ 
+ .label {
+   font-weight: 400;
+   margin-top: 10px;
+   margin-left: 8%;
+ }
+ 
+ .input {
+   width: 84%;
+   margin: 0 auto;
+   margin-top: 5px;
+   padding: 7px 12px;
+   border-radius: 5px;
+   border: 1px solid $border-color-base;
+ 
+   &::placeholder {
+     color: $border-color-base;
+   }
+ 
+   &:focus {
+     outline: 1px solid $processing-color;
+   }
+ 
+ }
+ 
+ .inputError {
+   border-color: red;
+ 
+   &:focus {
+     outline-color: red;
+   }
+ }
+ 
+ .error {
+   margin-left: 8%;
+   display: flex;
+   align-items: flex-end;
+   height: 15px;
+   font-size: 10px;
+   color: red;
+ }
+ 
+ .textarea {
+   min-height: 170px;
+   resize: vertical;
+ }

@@ -1,0 +1,50 @@
+@import '../../assets/styles/varialiables.scss';
+
+.title{
+   font-family: sans-serif;
+   font-size: 20px;
+   line-height: 28px;
+   margin: 30px auto;
+   margin-bottom: 20px;
+   width:fit-content;
+}
+
+.wrap{
+   background-color: white;
+   height: 498px;
+   width: 384px;
+   margin: 40px auto;
+   border: 1px solid $border-color-base;
+   box-shadow: 0 1.5px 3px black;
+   border-radius: 6px;
+   font-family: Roboto;
+}
+
+
+.button{
+   border: none; outline: none; 
+   background-color: $primary-color;
+   color: white;
+   height: 40px;
+   width: 319px;
+   border-radius: 4px;
+  }
+
+  .button-wrap{
+   width: 319px;
+   margin: 10px auto;
+  }
+
+  .edit-profile{
+   position: relative;
+  }
+  
+.success {
+   width: 384px;
+   height: 25px;
+   margin: 0 auto;
+   position: absolute;
+   top: -30px;
+   left: 50%;
+   margin-left: -192px;
+ }

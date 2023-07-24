@@ -1,0 +1,62 @@
+@import '../../assets/styles/varialiables.scss';
+
+.wrap{
+   width: 938px;
+   height: 807px;
+   background-color: white;
+   box-shadow: black 0px 4px 12px;
+   margin: 20px auto;
+   position: relative;
+}
+
+
+.markdown{
+   padding-left: 16px;
+}
+
+
+.spin{
+   margin-top: 20px;
+   text-align: center;
+}
+
+
+
+.buttonDelete {
+   border-color: red;
+   color: red;
+ 
+   &:hover {
+     background-color: red;
+     border-color: red !important;
+     color: white !important;
+   }
+ }
+ .buttonWrap {
+   display: flex;
+   justify-content: space-between;
+   width: 140px;
+   position: absolute;
+   right: 4%;
+   top: 10%;
+ }
+ 
+ .buttonEdit {
+   border-color: $success-color;
+   color: $success-color;
+ 
+   &:hover {
+     background-color: $success-color;
+     border-color: $success-color !important;
+     color: white !important;
+   }
+ }
+
+ .serverError{
+   position: absolute;
+   width: 200px;
+   top:20%;
+   left: 50%;
+   margin-left: -100px;
+ }
+
