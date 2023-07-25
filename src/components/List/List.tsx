@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Pagination, Spin, Alert } from 'antd';
 
 import ListElement from '../ListElement/ListElement';
@@ -12,6 +12,7 @@ import {
     selectError,
 } from '../../redux/store/articleListSlice';
 import { selectIsLogin } from '../../redux/store/userSlice';
+import { useAppDispatch } from '../../redux/store/store';
 
 import styles from './List.module.scss';
 
@@ -21,7 +22,7 @@ function List() {
     const status = useSelector(selectStatus);
     const error = useSelector(selectError);
     const isLogin = useSelector(selectIsLogin);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchArticles(page));
@@ -39,7 +40,7 @@ function List() {
         return <Alert message="Error" description={error} type="error" showIcon />;
     }
 
-    const handlerOnChangePage = (currentPage) => {
+    const handlerOnChangePage = (currentPage: number) => {
         dispatch(setCurrentPage(currentPage));
 
         window.scrollTo({
@@ -52,7 +53,7 @@ function List() {
     const list = articles
         ? articles.map((item) => (
               <div className={styles.element} key={`${item.slug}${item.author}${item.description}`}>
-                  <ListElement item={item} />
+                  <ListElement article={item} />
               </div>
           ))
         : null;

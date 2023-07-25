@@ -2,9 +2,9 @@
 
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {NavigateFunction} from 'react-router-dom';
+import { NavigateFunction } from 'react-router-dom';
 
-import api,  { IArticleCreateData } from '../../Api/Api';
+import api, { IArticleCreateData } from '../../Api/Api';
 
 import { updateOneFavorited } from './articleListSlice';
 import { RootState } from './store';
@@ -20,25 +20,27 @@ export interface IArticle {
     favorited: boolean;
     favoritesCount: number;
     author: {
-      username: string;
-      bio: string;
-      image: string;
-      following: boolean;
+        username: string;
+        bio: string;
+        image: string;
+        following: boolean;
     };
-  }
-  
-  export interface IArticleState {
+}
+
+export interface IArticleState {
     article: IArticle;
     isLoading: boolean;
-    error: {
-      get: null | string;
-      delete: boolean;
-    }| object| string;
-    status: null| string;
-  }
-  
+    error:
+        | {
+              get: null | string;
+              delete: boolean;
+          }
+        | object
+        | string;
+    status: null | string;
+}
 
-export const fetchArticle = createAsyncThunk('article/fetchArticle', async (slug:string, { rejectWithValue }) => {
+export const fetchArticle = createAsyncThunk('article/fetchArticle', async (slug: string, { rejectWithValue }) => {
     try {
         const data = await api.getArticle(slug);
         return data;
@@ -49,7 +51,10 @@ export const fetchArticle = createAsyncThunk('article/fetchArticle', async (slug
 
 export const createArticle = createAsyncThunk(
     'article/createArticle',
-    async ( { newArticle, navigate }: { newArticle: IArticleCreateData; navigate: NavigateFunction }, { rejectWithValue }) => {
+    async (
+        { newArticle, navigate }: { newArticle: IArticleCreateData; navigate: NavigateFunction },
+        { rejectWithValue }
+    ) => {
         try {
             const data = await api.createArticle(newArticle);
             navigate(`/articles/${data.article.slug}`);
@@ -62,7 +67,10 @@ export const createArticle = createAsyncThunk(
 
 export const updateArticle = createAsyncThunk(
     'article/updateArticle',
-    async ({ newArticle, slug, navigate } :{newArticle: IArticleCreateData, slug:string, navigate: NavigateFunction }, { rejectWithValue }) => {
+    async (
+        { newArticle, slug, navigate }: { newArticle: IArticleCreateData; slug: string; navigate: NavigateFunction },
+        { rejectWithValue }
+    ) => {
         try {
             const data = await api.updateArticle(newArticle, slug);
             navigate(`/articles/${data.article.slug}`);
@@ -75,7 +83,7 @@ export const updateArticle = createAsyncThunk(
 
 export const deleteArticle = createAsyncThunk(
     'article/deleteArticle',
-    async ({ slug, navigate }:{ slug: string, navigate: NavigateFunction }, { rejectWithValue }) => {
+    async ({ slug, navigate }: { slug: string; navigate: NavigateFunction }, { rejectWithValue }) => {
         try {
             const data = await api.deleteArticle(slug);
             navigate('/');
@@ -116,7 +124,7 @@ export const unfavoriteArticle = createAsyncThunk(
     }
 );
 
-const initialState:  IArticleState = {
+const initialState: IArticleState = {
     article: {
         slug: '',
         title: '',

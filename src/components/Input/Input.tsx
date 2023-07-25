@@ -1,6 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
+
 import s from './Input.module.scss';
 
-function Input({ label, placeholder, options, error, type = 'text', modeTextarea = false }) {
+interface IProps {
+    placeholder: string;
+    options: UseFormRegisterReturn<any>;
+    error: FieldError | undefined;
+    label?: string;
+    type?: string;
+    modeTextarea?: boolean;
+    autofocus?: boolean;
+}
+
+function Input({ label, placeholder, options, error, type = 'text', modeTextarea = false }: IProps) {
     const inputClass = error ? `${s.input} ${s.inputError}` : s.input;
 
     return (

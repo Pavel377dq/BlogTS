@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Offline } from 'react-detect-offline';
 import { Alert } from 'antd';
@@ -13,13 +13,14 @@ import SignIn from './components/SignIn/SignIn';
 import DefendedWrapper from './components/MyHoc/DefenedWrap';
 import Header from './components/Header/Header';
 import { selectIsCurentUserLoading, getCurrentUser } from './redux/store/userSlice';
+import { useAppDispatch } from './redux/store/store';
 import EditForm from './components/EditForm/EditForm';
 import ArticleForm from './components/ArticleForm/ArticleForm';
 import styles from './App.module.scss';
 
 function App() {
     const isCurrentUserLoading = useSelector(selectIsCurentUserLoading);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getCurrentUser());

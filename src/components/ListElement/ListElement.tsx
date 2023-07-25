@@ -2,21 +2,26 @@ import React from 'react';
 import { format } from 'date-fns';
 import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { selectIsLogin } from '../../redux/store/userSlice';
-import { favoriteArticle, unfavoriteArticle } from '../../redux/store/articleSlice';
+import { favoriteArticle, unfavoriteArticle, IArticle } from '../../redux/store/articleSlice';
 import fullHeart from '../../assets/images/fullHeart.svg';
 import emptyHeart from '../../assets/images/emptyHeart.svg';
+import { useAppDispatch } from '../../redux/store/store';
 
 import styles from './ListElement.module.scss';
 
-function ListElement({ item }) {
-    const { author, createdAt, description, tagList, favoritesCount, favorited, slug, title } = item;
-    const dispatch = useDispatch();
+interface IProps {
+    article: IArticle;
+}
+
+function ListElement({ article }: IProps) {
+    const { author, createdAt, description, tagList, favoritesCount, favorited, slug, title } = article;
+    const dispatch = useAppDispatch();
     const isLogin = useSelector(selectIsLogin);
 
-    const sliceString = (str, num) => {
+    const sliceString = (str: string, num: number) => {
         if (str && str.length > num) {
             const newStr = `${str.slice(0, num)}...`;
             return newStr;

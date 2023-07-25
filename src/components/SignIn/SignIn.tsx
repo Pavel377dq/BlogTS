@@ -1,23 +1,30 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Alert, Button } from 'antd';
 
 import Input from '../Input/Input';
 import { loginAccount, clearServerErrors, selectServerErrors, selectIsLoading } from '../../redux/store/userSlice';
+import { useAppDispatch } from '../../redux/store/store';
 
 import styles from './SignIn.module.scss';
 
+interface IFormValues {
+    email: string;
+    password: string;
+}
+
 function SignIn() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const serverErrors = useSelector(selectServerErrors);
     const isLoading = useSelector(selectIsLoading);
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<IFormValues>({
         mode: 'onBlur',
     });
 
@@ -29,20 +36,23 @@ function SignIn() {
         []
     );
 
-    const onSubmit = (data) => {
+    const onSubmit: SubmitHandler<IFormValues> = (data) => {
         dispatch(loginAccount(data));
     };
 
     return (
         <div className={styles.signIn}>
-            {serverErrors && (
-                <Alert
-                    className={styles.serverError}
-                    message="Error: email or password is invalid"
-                    type="error"
-                    showIcon
-                />
-            )}
+            <>
+                {' '}
+                {serverErrors && (
+                    <Alert
+                        className={styles.serverError}
+                        message="Error: email or password is invalid"
+                        type="error"
+                        showIcon
+                    />
+                )}
+            </>
 
             <form onSubmit={handleSubmit(onSubmit)} className={styles.wrap}>
                 <h3 className={styles.title}>Sign In</h3>

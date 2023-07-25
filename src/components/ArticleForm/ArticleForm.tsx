@@ -1,7 +1,8 @@
+/* eslint-disable react/require-default-props */
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
 import { Button } from 'antd';
 
 import { selectUser } from '../../redux/store/userSlice';
@@ -12,11 +13,25 @@ import {
     updateArticle,
     selectIsLoading,
 } from '../../redux/store/articleSlice';
+import { useAppDispatch } from '../../redux/store/store';
 import Input from '../Input/Input';
 
 import styles from './ArticleForm.module.scss';
 
-function ArticleForm({ editMode }) {
+interface IFormValues {
+    title: string;
+    description: string;
+    text: string;
+    tags: {
+        tag: string;
+    }[];
+}
+
+interface IProps {
+    editMode?: boolean;
+}
+
+function ArticleForm({ editMode }: IProps) {
     const {
         control,
         register,
@@ -36,7 +51,7 @@ function ArticleForm({ editMode }) {
 
     const { slug: slugParam } = useParams();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const currentUser = useSelector(selectUser);
     const article = useSelector(selectArticle);
     const isLoading = useSelector(selectIsLoading);
@@ -77,12 +92,12 @@ function ArticleForm({ editMode }) {
         }
     }, [editMode, title, description, body, tagList]);
 
-    const onSubmit = (data) => {
+    const onSubmit: SubmitHandler<IFormValues> = (data) => {
         const newArticle = {
             title: data.title,
             description: data.description,
             body: data.text,
-            tagList: [],
+            tagList: [] as string[],
         };
         data.tags.forEach((item) => {
             const { tag } = item;

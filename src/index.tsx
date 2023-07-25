@@ -19,5 +19,4 @@ root.render(
     </React.StrictMode>
 );
 
-
 export type RootState = ReturnType<typeof store.getState>;

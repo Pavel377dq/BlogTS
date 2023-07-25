@@ -1,14 +1,23 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import { Button } from 'antd';
 
 import Input from '../Input/Input';
 import { selectServerErrors, clearServerErrors, createAccount, selectIsLoading } from '../../redux/store/userSlice';
+import { useAppDispatch } from '../../redux/store/store';
 
 import styles from './SignUp.module.scss';
+
+interface IFormValues {
+    username: string;
+    email: string;
+    password: string;
+    repeatPassword: string;
+    agree: boolean;
+}
 
 function SignUp() {
     const {
@@ -16,11 +25,11 @@ function SignUp() {
         handleSubmit,
         formState: { errors },
         setError,
-    } = useForm({
+    } = useForm<IFormValues>({
         mode: 'onBlur',
     });
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const serverErrors = useSelector(selectServerErrors);
     const isLoading = useSelector(selectIsLoading);
 
@@ -43,11 +52,11 @@ function SignUp() {
         }
     }, [serverErrors]);
 
-    const onSubmit = (data) => {
+    const onSubmit: SubmitHandler<IFormValues> = (data) => {
         const newUser = {
             username: data.username,
             email: data.email,
-            password: data.password
+            password: data.password,
         };
         dispatch(createAccount(newUser));
     };
@@ -123,7 +132,9 @@ function SignUp() {
 
                 <label htmlFor="agree">I agree to processing my personal information</label>
             </div>
-            <div className={styles.errorAgree}  ><>{errors.agree && errors.agree.message}</></div>
+            <div className={styles.errorAgree}>
+                <>{errors.agree && errors.agree.message}</>
+            </div>
             <div className={styles['button-wrap']}>
                 <Button htmlType="submit" className={styles.button} loading={isLoading}>
                     Create

@@ -1,18 +1,19 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Img } from 'react-image';
 import { Button, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import { logout, selectIsCurentUserLoading, selectIsLogin, selectUser } from '../../redux/store/userSlice';
+import { useAppDispatch } from '../../redux/store/store';
 import avatar from '../../assets/images/defaultAvatar.svg';
 
 import styles from './Header.module.scss';
 
 function Header() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const isLogin = useSelector(selectIsLogin);
     const user = useSelector(selectUser);
     const isCurentUserLoading = useSelector(selectIsCurentUserLoading);

@@ -7,23 +7,25 @@ import api from '../../Api/Api';
 import { IArticle } from './articleSlice';
 import { RootState } from './store';
 
-export const fetchArticles = createAsyncThunk('articleList/fetchArticles', async (page:number, { rejectWithValue }) => {
-    try {
-        const data = await api.getArticles((page - 1) * 20);
-        return data;
-    } catch (error) {
-        return rejectWithValue(`${error}`);
+export const fetchArticles = createAsyncThunk(
+    'articleList/fetchArticles',
+    async (page: number, { rejectWithValue }) => {
+        try {
+            const data = await api.getArticles((page - 1) * 20);
+            return data;
+        } catch (error) {
+            return rejectWithValue(`${error}`);
+        }
     }
-});
-
+);
 
 export interface IArticleListState {
     articlesCount: number;
     currentPage: number;
     isLoading: boolean;
     error: null | string;
-    status: null| string
-  }
+    status: null | string;
+}
 
 export const articlesAdapter = createEntityAdapter<IArticle>({
     selectId: (article) => article.slug,
@@ -34,7 +36,7 @@ const initialState = articlesAdapter.getInitialState<IArticleListState>({
     currentPage: 1,
     status: null,
     error: null,
-    isLoading: false
+    isLoading: false,
 });
 
 export const articleListSlice = createSlice({

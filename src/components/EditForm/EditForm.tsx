@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { useSelector, useDispatch } from 'react-redux';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import { Alert, Button } from 'antd';
 
 import {
@@ -11,9 +11,19 @@ import {
     selectUser,
     selectIsLoading,
 } from '../../redux/store/userSlice';
+import { useAppDispatch } from '../../redux/store/store';
 import Input from '../Input/Input';
 
 import styles from './EditForm.module.scss';
+
+interface IFormValues {
+    username: string;
+    email: string;
+    newPassword: string;
+    repeatPassword: string;
+    password: string;
+    imgUrl: string;
+}
 
 function EditForm() {
     const {
@@ -22,12 +32,16 @@ function EditForm() {
         formState: { errors },
         setValue,
         setError,
-    } = useForm({
+    } = useForm<IFormValues>({
         mode: 'onBlur',
     });
 
-    const dispatch = useDispatch();
-    const setValueMemo = useCallback((string, value) => setValue(string, value), [setValue]);
+    const dispatch = useAppDispatch();
+    const setValueMemo = useCallback(
+        (string: 'username' | 'email' | 'newPassword' | 'repeatPassword' | 'imgUrl', value: string) =>
+            setValue(string, value),
+        [setValue]
+    );
     const isEditUserSuccess = useSelector(selectIsEditUserSuccess);
     const serverErrors = useSelector(selectServerErrors);
     const isLoading = useSelector(selectIsLoading);
@@ -62,11 +76,12 @@ function EditForm() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [serverErrors]);
 
-    const onSubmit = (data) => {
+    const onSubmit: SubmitHandler<IFormValues> = (data) => {
         const newUserData = {
             username: data.username,
             email: data.email,
             image: data.imgUrl,
+            password: '',
         };
 
         if (data.newPassword) {
@@ -75,8 +90,8 @@ function EditForm() {
         dispatch(editAccount(newUserData));
     };
 
-    const checkUrlImg = (url) =>
-        new Promise((resolve) => {
+    const checkUrlImg = (url: string) =>
+        new Promise<true | string>((resolve) => {
             if (url.trim()) {
                 const img = new Image();
 
@@ -152,7 +167,7 @@ function EditForm() {
                     placeholder="url"
                     error={errors.imgUrl}
                     options={register('imgUrl', {
-                        validate: (url) => checkUrlImg(url),
+                        validate: (url: string) => checkUrlImg(url),
                     })}
                 />
 

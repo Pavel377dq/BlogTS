@@ -1,28 +1,27 @@
-export interface ILoginData{
-    email: string,
-    password:string
+export interface ILoginData {
+    email: string;
+    password: string;
 }
-
 
 export interface INewUser {
     username: string;
     email: string;
     password: string;
-  }
-  
-  export interface INewUserData {
+}
+
+export interface INewUserData {
     username?: string;
     email?: string;
     password?: string;
     image?: string;
-  }
-  
-  export interface IArticleCreateData {
+}
+
+export interface IArticleCreateData {
     title: string;
     description: string;
     body: string;
     tagList: string[];
-  }
+}
 
 const api = {
     baseUrl: 'https://blog.kata.academy/api',
